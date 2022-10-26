@@ -1,0 +1,68 @@
+private Node deleteRec(Node node, T elem)
+    {
+        if(first == true)
+        {
+            System.out.println("Setting parent.\n");
+            parent = node;
+            first = false;
+        }
+        if(node == null)
+            {
+                System.out.println("Nothing to delete.\n");
+                return node;
+            }
+        
+        //Searching node
+        if(elem.compareTo(node.elem) < 0)
+        {
+            parent = current;
+            current.left = deleteRec(current.left, elem);
+        }
+            
+        else if(elem.compareTo(current.elem) > 0)
+        {
+            parent = current;
+            current.right = deleteRec(current.right, elem);
+        }
+        else //Found node
+        {
+            if(current.left == null)
+            {
+                parent.left = current.right;
+                current.right = null;
+                current = null;
+                return node.right;
+            } 
+            else if(current.right == null)
+            {
+                parent.left = current.left;
+                current.left = null;
+                current = null;
+                return node.left;
+            }   
+            else 
+            {
+                Node min = minNode(current.right);
+                System.out.println(min.elem + " Min.\n");
+                parent.right = min;
+                System.out.println(parent.elem + " Parent.\n");
+                System.out.println(parent.right.elem + " Parent.right.\n");
+                System.out.println(node.right.elem + " Node.right.\n");
+                min.left = current.left;
+                if(current.right != min)
+                {
+                    min.right = current.right;
+                    deleteRec(current.right, min.elem);
+                }
+                if(current == node)//When deleting root
+                    node = min;
+                current.left = null;
+                current.right = null;
+                current = null;
+                System.out.println(node.right.elem + " Node.right.\n");
+                System.out.println(drawRec(node) + "\n");
+                return node;//co gdy usunolem korzen
+            }      
+        }
+        return node;
+    }
