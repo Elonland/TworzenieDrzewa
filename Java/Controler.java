@@ -4,9 +4,21 @@ public class Controler
     {
         BST<Integer> tree = new BST<Integer>();
 
-        tree.insert(2);
-        tree.insert(3);
-        tree.insert(1);
+        tree.deleteElement(5);
+        tree.draw();
+        tree.insert(10);
+        tree.insert(8);
+        tree.insert(9);
+        tree.insert(20);
+        tree.insert(15);
+        tree.insert(25);
+        tree.insert(12);
+        tree.draw();
+        tree.deleteElement(20);
+        tree.draw();
+        tree.deleteElement(10);
+        tree.draw();
+        tree.insert(10);
         tree.draw();
 
     }
